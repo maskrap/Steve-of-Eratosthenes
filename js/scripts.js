@@ -6,23 +6,20 @@ var prime = function(userInput) {
   for (index = 0; index <= primeNumbers.length; index ++) {
     var arrayLength = primeNumbers.length;
     for (i = arrayLength; i > index; i -- )
-    if (primeNumbers[i] % primeNumbers[index] === 0) {
-      primeNumbers.splice(i,1)
-    }
-
-
+      if (primeNumbers[i] % primeNumbers[index] === 0) {
+        primeNumbers.splice(i,1)
+      }
   };
-  for (index = 0; index < primeNumbers.length; index ++)
-    $(".results").append("<li>" + primeNumbers[index] + "</li>");
-
-    alert(primeNumbers)
+  return (primeNumbers)
 };
 
 $(document).ready(function() {
   $("#user-form").submit(function(event) {
-    var userNum = parseInt($("#user-num").val());
-    prime(userNum);
     event.preventDefault();
+    $("ul.results").empty();
+    var userNum = parseInt($("#user-num").val());
+    primeNumbers = prime(userNum);
+    for (index = 0; index < primeNumbers.length; index ++)
+      $(".results").append("<li>" + primeNumbers[index] + "</li>");
   });
-
 });
